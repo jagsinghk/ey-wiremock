@@ -1,0 +1,14 @@
+.gradle/
+build/
+out/
+
+# IntelliJ / VS Code
+.idea/
+*.iml
+.vscode/
+
+# OS files
+.DS_Store
+
+# Logs
+*.log
