@@ -17,17 +17,31 @@ jobs:
       - name: Run API tests in Docker
         run: docker compose up --abort-on-container-exit --exit-code-from api-tests api-tests
 
-      - name: Publish test report
+      - name: Tear down after API tests
+        if: always()
+        run: docker compose down
+
+      - name: Run performance tests in Docker
+        run: docker compose up --abort-on-container-exit --exit-code-from perf-tests perf-tests
+
+      - name: Publish API test report
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: test-report
+          name: api-test-report
           path: build/reports/tests/test/
+
+      - name: Publish Gatling performance report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gatling-report
+          path: build/reports/gatling/
 
       - name: Print WireMock logs on failure
         if: failure()
         run: docker compose logs
 
-      - name: Stop WireMock
+      - name: Tear down
         if: always()
         run: docker compose down
