@@ -18,6 +18,10 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    def apiBaseUrl = System.getProperty('api.base.url')
+    if (apiBaseUrl != null && !apiBaseUrl.isBlank()) {
+        systemProperty 'api.base.url', apiBaseUrl
+    }
     systemProperty 'wiremock.base.url', System.getProperty('wiremock.base.url', 'http://localhost:8080')
     testLogging {
         events 'passed', 'skipped', 'failed'
