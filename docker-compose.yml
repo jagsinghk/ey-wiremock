@@ -1,0 +1,24 @@
+services:
+  wiremock:
+    image: wiremock/wiremock:latest
+    container_name: wiremock-jsonplaceholder
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./mappings:/home/wiremock/mappings
+      - ./__files:/home/wiremock/__files
+    command: --verbose --global-response-templating
+
+  api-tests:
+    image: gradle:8.7-jdk17
+    container_name: wiremock-posts-api-tests
+    working_dir: /workspace
+    depends_on:
+      - wiremock
+    volumes:
+      - ./:/workspace
+    environment:
+      - WIREMOCK_BASE_URL=http://wiremock:8080
+      - GRADLE_USER_HOME=/tmp/.gradle
+    command: >
+      sh -c "gradle clean test --no-daemon -Dapi.base.url=$$WIREMOCK_BASE_URL"

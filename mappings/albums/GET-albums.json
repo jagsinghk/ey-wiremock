@@ -1,0 +1,16 @@
+{
+  "id": "a5000001-0000-0000-0000-000000000001",
+  "name": "GET all albums",
+  "request": {
+    "method": "GET",
+    "url": "/albums"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Access-Control-Allow-Origin": "*"
+    },
+    "bodyFileName": "albums.json"
+  }
+}

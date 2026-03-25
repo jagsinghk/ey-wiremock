@@ -1,0 +1,27 @@
+{
+  "id": "a1000001-0000-0000-0000-000000000004",
+  "name": "POST create post",
+  "request": {
+    "method": "POST",
+    "url": "/posts",
+    "headers": {
+      "Content-Type": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Access-Control-Allow-Origin": "*"
+    },
+    "jsonBody": {
+      "userId": 1,
+      "id": 101,
+      "title": "{{jsonPath request.body '$.title'}}",
+      "body": "{{jsonPath request.body '$.body'}}"
+    },
+    "transformers": ["response-template"]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "a6000001-0000-0000-0000-000000000002",
+  "name": "GET photo by ID",
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/photos/[0-9]+"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Access-Control-Allow-Origin": "*"
+    },
+    "jsonBody": {
+      "albumId": 1,
+      "id": 1,
+      "title": "accusamus beatae ad facilis cum similique qui sunt",
+      "url": "https://via.placeholder.com/600/92c952",
+      "thumbnailUrl": "https://via.placeholder.com/150/92c952"
+    }
+  }
+}

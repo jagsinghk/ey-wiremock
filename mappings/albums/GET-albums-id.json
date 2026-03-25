@@ -1,0 +1,20 @@
+{
+  "id": "a5000001-0000-0000-0000-000000000002",
+  "name": "GET album by ID",
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/albums/[0-9]+"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Access-Control-Allow-Origin": "*"
+    },
+    "jsonBody": {
+      "userId": 1,
+      "id": 1,
+      "title": "quidem molestiae enim"
+    }
+  }
+}

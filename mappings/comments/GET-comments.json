@@ -1,0 +1,16 @@
+{
+  "id": "a2000001-0000-0000-0000-000000000001",
+  "name": "GET all comments",
+  "request": {
+    "method": "GET",
+    "url": "/comments"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Access-Control-Allow-Origin": "*"
+    },
+    "bodyFileName": "comments.json"
+  }
+}

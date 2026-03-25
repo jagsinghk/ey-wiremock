@@ -1,0 +1,16 @@
+{
+  "id": "a1000001-0000-0000-0000-000000000003",
+  "name": "GET comments for post by ID",
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/posts/[0-9]+/comments"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Access-Control-Allow-Origin": "*"
+    },
+    "bodyFileName": "post-1-comments.json"
+  }
+}

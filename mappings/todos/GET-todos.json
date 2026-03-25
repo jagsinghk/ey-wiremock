@@ -1,0 +1,16 @@
+{
+  "id": "a4000001-0000-0000-0000-000000000001",
+  "name": "GET all todos",
+  "request": {
+    "method": "GET",
+    "url": "/todos"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Access-Control-Allow-Origin": "*"
+    },
+    "bodyFileName": "todos.json"
+  }
+}

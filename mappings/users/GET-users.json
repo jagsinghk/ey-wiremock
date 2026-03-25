@@ -1,0 +1,16 @@
+{
+  "id": "a3000001-0000-0000-0000-000000000001",
+  "name": "GET all users",
+  "request": {
+    "method": "GET",
+    "url": "/users"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8",
+      "Access-Control-Allow-Origin": "*"
+    },
+    "bodyFileName": "users.json"
+  }
+}

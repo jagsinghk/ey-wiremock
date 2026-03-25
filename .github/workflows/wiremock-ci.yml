@@ -1,0 +1,33 @@
+name: WireMock CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  wiremock:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run API tests in Docker
+        run: docker compose up --abort-on-container-exit --exit-code-from api-tests api-tests
+
+      - name: Publish test report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-report
+          path: build/reports/tests/test/
+
+      - name: Print WireMock logs on failure
+        if: failure()
+        run: docker compose logs
+
+      - name: Stop WireMock
+        if: always()
+        run: docker compose down
