@@ -8,24 +8,16 @@ services:
       - ./mappings:/home/wiremock/mappings
       - ./__files:/home/wiremock/__files
     command: --verbose --global-response-templating
-    healthcheck:
-      test: ["CMD", "curl", "-fsS", "http://localhost:8080/health"]
-      interval: 5s
-      timeout: 3s
-      retries: 30
-      start_period: 5s
 
   api-tests:
     image: gradle:8.7-jdk17
     container_name: wiremock-posts-api-tests
     working_dir: /workspace
     depends_on:
-      wiremock:
-        condition: service_healthy
+      - wiremock
     volumes:
       - ./:/workspace
     environment:
-      - WIREMOCK_BASE_URL=http://wiremock:8080
       - GRADLE_USER_HOME=/tmp/.gradle
     command: >
       bash -lc "
@@ -35,8 +27,8 @@ services:
         echo 'Waiting for WireMock to be ready on wiremock:8080...';
         sleep 2;
       done;
-      if [ \"$ready\" -ne 1 ]; then
+      if [ \"$$ready\" -ne 1 ]; then
         echo 'WireMock did not become ready in time.';
         exit 1;
       fi;
-      gradle clean test --no-daemon -Dapi.base.url=$WIREMOCK_BASE_URL"
+      gradle clean test --no-daemon -Dapi.base.url=http://wiremock:8080"
